@@ -1,15 +1,16 @@
-@extends("master")
-@section("content")
-    <h2>Brand</h2>
-       
-@endsection
+@extends('app')
+@section('content')
+<div class="container">
+<div class="row  mt-5 mb-5">
+    <div class="col-md-5">
 
-@section("footer")
-    <hr>    
-    <a href="#">Google</a> <br>
-@endsection
-
-@section('header')
-    @parent
-    <h2>xxxx</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+    
+    </div>
+</div>
+</div>
+    
 @endsection
