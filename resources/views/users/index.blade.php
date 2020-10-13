@@ -15,19 +15,19 @@
                 </tr>
             </thead>
             <tbody>   
-               @forelse (\App\Models\User::all() as $u)
+               @forelse ($users as $u)
                <tr>
                 <th>{{$u->name}}</th>
                 <th>{{$u->email}}</th>
                 <th>{{$u->role}}</th>
-                <th><ul>
-                {{-- @forelse ($u->contacts as $c)
+                <th><ul>               
+                @forelse ($u->contacts as $c) 
                 <li>{{$c->contact_type->type}} : {{$c->contact}}</li>       
                 @empty
                 <li>No Contact Yet</li>
-                @endforelse --}}
+                @endforelse
             </ul>
-        {{dd($u->contacts)}}</th>
+      </th>
                 <th>&nbsp;</th>
                 </tr>
                @empty

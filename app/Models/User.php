@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\Contacts;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -41,9 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     function contacts(){
-        return $this->hasMany("Contacts" , "user_id" ,"id");
+        return $this->hasMany(Contacts::class, "user_id" ,"id");
     }
     function contact_types(){
-        return $this->belongsToMany("ContactType" ,"contacts" );
+        return $this->belongsToMany(ContactType::class ,"contacts" );
     }
 }

@@ -12,9 +12,9 @@ class Contacts extends Model
     public $fillable =["contact_type_id" , "contact" ,"user_id"];
 
     public function user(){
-        return $this->belongsTo("User");
+        return $this->belongsTo("App\Models\User");
     }
     function contact_type(){
-        return $this->belongsTo("ContactType");
+        return $this->belongsTo("App\Models\ContactType");
     }
 }

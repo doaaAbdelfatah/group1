@@ -13,6 +13,6 @@ class ContactType extends Model
     public $fillable =["type"];
 
     function users(){
-        return $this->belongsToMany("User" ,"contacts" );
+        return $this->belongsToMany("App\Models\User" ,"contacts" );
     }
 }
