@@ -15,4 +15,10 @@ class ContactType extends Model
     function users(){
         return $this->belongsToMany("App\Models\User" ,"contacts" );
     }
+
+    function contacts(){
+        return $this->hasMany(Contacts::class ,"contact_type_id" , "id");
+    }
+
+    
 }

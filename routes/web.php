@@ -4,8 +4,10 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactTypeController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\UserController;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ContactType;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +40,14 @@ Route::post("/brand/edit" , [BrandController::class , "update"]);
  Route::resource("/types" , ContactTypeController::class)->except(["create"]);
 
  Route::get("/users/all" , [UserController::class ,"index"])->name("users.all");
+
+
+ Route::get("/test" ,function(){
+    //  $c =DB::table("brands")->get();
+    $c= Brand::all();
+    $b =$c->fresh();
+    // dd($c->contains(11));
+    // dd($c->find(1));
+    dd($b);
+
+ });

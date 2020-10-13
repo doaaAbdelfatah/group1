@@ -28,7 +28,7 @@
                 @endforelse
             </ul>
       </th>
-                <th>&nbsp;</th>
+            <th>&nbsp;</th>
                 </tr>
                @empty
                <tr>

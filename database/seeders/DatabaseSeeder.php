@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
+use App\Models\Contacts;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(ContactTypeSeeder::class);
+        \App\Models\User::factory(10)->create();
+        Brand::factory(8)->create();
+        Contacts::factory(20)->create();
     }
 }

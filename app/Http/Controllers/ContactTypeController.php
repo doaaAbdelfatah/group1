@@ -14,7 +14,10 @@ class ContactTypeController extends Controller
      */
     public function index()
     {
-        $types = ContactType::all();
+        // $types = ContactType::all();
+        $types = ContactType::with(["contacts"=> function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->get();
         return view("types.index")->with(compact("types"));
     }
     
