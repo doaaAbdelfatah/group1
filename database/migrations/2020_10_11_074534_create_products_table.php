@@ -19,9 +19,11 @@ class CreateProductsTable extends Migration
             $table->integer("qty");
             $table->decimal("price" ,10,2);
             $table->unsignedBigInteger("category_id");
-            $table->foreign('category_id')->references('id')->on('cateogries');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger("brand_id")->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreignId("seller_id")->nullable();
+            $table->foreign('seller_id')->references('id')->on('users');
             
             $table->timestamps();
         });

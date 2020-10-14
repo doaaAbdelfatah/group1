@@ -47,4 +47,8 @@ class User extends Authenticatable
     function contact_types(){
         return $this->belongsToMany(ContactType::class ,"contacts" );
     }
+
+    function products (){
+        return $this->hasMany(Products::class ,"seller_id" ,"id");
+    }
 }

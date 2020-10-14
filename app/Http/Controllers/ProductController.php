@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -23,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view ("products.create");
     }
 
     /**
@@ -34,7 +35,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" =>"required|max:255",
+            "qty"=>"required|integer",
+            "price"=>"required|numeric",
+            "category_id" =>"required|exists:categories,id",
+            "brand_id" =>"nullable|exists:brands,id"
+        ]);
+
+        $p = Products::create($request->all());
+        dd($p);
     }
 
     /**

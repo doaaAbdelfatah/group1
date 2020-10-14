@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactTypeController;
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ContactType;
+use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -51,3 +54,6 @@ Route::post("/brand/edit" , [BrandController::class , "update"]);
     dd($b);
 
  });
+
+ Route::resource("/category"  ,CategoryController::class);
+ Route::resource("/product"  ,ProductController::class);

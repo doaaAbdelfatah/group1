@@ -13,11 +13,11 @@ class CreateCateogriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cateogries', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string("name" ,100);
             $table->unsignedBigInteger("category_id")->nullable();
-            $table->foreign('category_id')->references('id')->on('cateogries');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete("cascade");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCateogriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cateogries');
+        Schema::dropIfExists('categories');
     }
 }
