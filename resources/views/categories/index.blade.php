@@ -14,6 +14,7 @@
                         <th>Name</th>
                         <th>Sub Categories Count</th>
                         <th>Main Category</th>
+                        <th>Brands</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
 
@@ -25,6 +26,15 @@
                         <td><a href="/category/{{$cat->id}}" class="btn-link"> {{$cat->name}}</a></td>
                         <td>{{$cat->sub_categories->count()}}</td>
                         <td>{{($cat->main_category)?$cat->main_category->name:""}}</td>
+                        <td>
+                            <ul>
+                           @forelse ($cat->brands->unique() as $brand)
+                            <li>{{$brand->name}}</li>
+                           @empty
+                             <li>No Brands</li>  
+                           @endforelse
+                        </ul>
+                        </td>
                         <td style="width: 50px"><a class="btn  btn-sm btn-success"
                                 href="/category/{{$cat->id}}/edit">edit</a></td>
                         <td style="width: 50px">

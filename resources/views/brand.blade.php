@@ -33,6 +33,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Categories</th>
                     <th>Created At</th>
                     <th>Last Update</th>
                     <th>&nbsp;</th>
@@ -42,6 +43,15 @@
                 @forelse ($brands as $brand)
                 <tr>
                     <td>{{$brand->name}}</td>
+                    <td>
+                        <ul>
+                       @forelse ($brand->categories->unique() as $cat)
+                        <li>{{$cat->name}}</li>
+                       @empty
+                         <li>No Categories</li>  
+                       @endforelse
+                    </ul>
+                    </td>
                     <td>{{$brand->created_at}}</td>
                     <td>{{$brand->updated_at}}</td>
                     {{-- <th><a class="btn btn-sm btn-danger" href="/brand/delete/{{$brand->id}}">delete</a></th> --}}

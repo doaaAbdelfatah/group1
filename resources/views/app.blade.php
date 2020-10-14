@@ -55,7 +55,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{route("product.create")}}">Add Products</a>
-                <a class="dropdown-item" href="#">Show Products</a>
+                <a class="dropdown-item" href="{{route("product.index")}}">Show Products</a>
                 
               </div>
             </li>
