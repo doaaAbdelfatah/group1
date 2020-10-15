@@ -1,9 +1,10 @@
+
 @extends('app')
 @section('content')
 <div class="container">
 <div class="row  mt-5 mb-5">
     <div class="col-md-5">
-       <h2>Manage Brand</h2>
+       <h2> @lang('messages.Manage Brand') </h2>
         @if ($errors->any())
            <div class="alert alert-danger" role="alert">
             <ul>

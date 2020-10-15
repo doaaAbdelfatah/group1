@@ -22,7 +22,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    protected $with =["contacts"];
+    // protected $with =["contacts"];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -41,13 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    function contacts(){
-        return $this->hasMany(Contacts::class, "user_id" ,"id");
+    // function contacts(){
+    //     return $this->hasMany(Contacts::class, "user_id" ,"id");
+    // }
+    // function contact_types(){
+    //     return $this->belongsToMany(ContactType::class ,"contacts" );
+    // }
+    public function contacts()
+    {
+        return $this->morphMany(Contacts::class, 'account');
     }
-    function contact_types(){
-        return $this->belongsToMany(ContactType::class ,"contacts" );
-    }
-
     function products (){
         return $this->hasMany(Products::class ,"seller_id" ,"id");
     }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {
     use HasFactory;
+
+    protected $fillable =["name"];
+
+    public function contacts()
+    {
+        return $this->morphMany(Contacts::class, 'account');
+    }
 }

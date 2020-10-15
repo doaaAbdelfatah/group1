@@ -14,7 +14,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $supplier = Supplier::orderBy("id" ,"desc")->get();
+        return view ("supplier.index")->with(compact("supplier"));
     }
 
     /**
@@ -24,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view ("supplier.create");
     }
 
     /**
@@ -35,7 +36,13 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" =>"required|max:255",
+            
+        ]);
+
+        $p = Supplier::create($request->all());
+        return redirect()->route("supplier.index");
     }
 
     /**
@@ -46,7 +53,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        return view("supplier.show")->with(compact("supplier"));
     }
 
     /**
@@ -57,7 +64,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view ("supplier.edit")->with(compact("supplier"));
     }
 
     /**
@@ -69,7 +76,13 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $request->validate([
+            "name" =>"required|max:255",
+            
+        ]);
+        $supplier->name=$request->name;
+        $supplier->save();
+        return redirect()->route("supplier.index");
     }
 
     /**
@@ -80,6 +93,7 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        return redirect()->route("supplier.index");
     }
 }

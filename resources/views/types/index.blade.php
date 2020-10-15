@@ -25,7 +25,9 @@
                     <th>Contact Types</th>
                     <th>Count User Contacts</th>
                     <th>Count User Contacts</th>
-                    <th>&nbsp;</th>
+                    <th style="width: 50px">&nbsp;</th>
+                    <th style="width: 50px">&nbsp;</th>
+                   
                 </tr>
             </thead>
             <tbody>   
@@ -33,20 +35,19 @@
                <tr>
                 <th>{{$item->type}}</th>
                 <th>
-                   {{$item->users->count()}}
+                   {{-- {{$item->users->count()}} --}}
                 </th>
                 <th>
-                    <ul>
+                    {{-- <ul>
                    @forelse ($item->contacts as $contact)
                     <li>{{$contact->contact}}</li>
                    @empty
                        No Contacts
                    @endforelse
-                    </ul>
+                    </ul> --}}
                 </th>
-                <th><form method="POST" action="/types/{{$item->id}}"> @csrf @method('DELETE') <input class="btn btn-sm btn-danger" type="submit" value="Delete"></form>
-                &nbsp; <a class="btn btn-sm btn-success" href="/types/{{$item->id}}/edit">Edit</a>
-                </th>
+                <th><form method="POST" action="/types/{{$item->id}}"> @csrf @method('DELETE') <input class="btn btn-sm btn-danger" type="submit" value="Delete"></form></th>
+                <th><a class="btn btn-sm btn-success" href="/types/{{$item->id}}/edit">Edit</a></th>
                 </tr>
                @empty
                <tr>

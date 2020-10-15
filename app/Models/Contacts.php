@@ -9,12 +9,15 @@ class Contacts extends Model
 {
     use HasFactory;
 
-    public $fillable =["contact_type_id" , "contact" ,"user_id"];
+    public $fillable =["contact_type_id" , "contact" ,"account_id" ,"account_type"];
 
-    public function user(){
-        return $this->belongsTo("App\Models\User");
-    }
+  
     function contact_type(){
         return $this->belongsTo("App\Models\ContactType");
+    }
+
+    public function account()
+    {
+        return $this->morphTo();
     }
 }

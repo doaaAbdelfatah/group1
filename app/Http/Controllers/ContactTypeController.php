@@ -14,6 +14,7 @@ class ContactTypeController extends Controller
      */
     public function index()
     {
+        
         // $types = ContactType::all();
         $types = ContactType::with(["contacts"=> function ($query) {
             $query->orderBy('created_at', 'desc');

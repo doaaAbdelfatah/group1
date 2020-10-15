@@ -18,8 +18,8 @@ class CreateContactsTable extends Migration
             $table->foreignId("contact_type_id");
             $table->foreign("contact_type_id")->references("id")->on("contact_types");
             $table->string("contact");
-            $table->foreignId("user_id");
-            $table->foreign("user_id")->references("id")->on("users");
+            $table->foreignId("account_id");
+            $table->string("account_type");
             $table->timestamps();
         });
     }

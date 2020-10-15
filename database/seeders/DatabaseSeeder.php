@@ -17,8 +17,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ContactTypeSeeder::class);
         \App\Models\User::factory(10)->create();
+        \App\Models\Supplier::factory(10)->create();
         Brand::factory(8)->create();
-        Contacts::factory(100)->create();
+        // Contacts::factory(100)->create();
        
     }
 }
