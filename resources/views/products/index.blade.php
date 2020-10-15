@@ -1,5 +1,15 @@
 @extends('app')
 @section('content')
+@if (session()->has('deleted'))
+    <div class="container text-center my-3">
+        <span class="alert alert-success">{{session()->get('deleted') }}</span>
+    </div>
+@endif
+@if (session()->has('updated'))
+    <div class="container text-center my-3">
+        <span class="alert alert-success">{{session()->get('updated') }}</span>
+    </div>
+@endif
 <div class="container">
     <div class="row  mt-5 mb-5">
         <div class="col">

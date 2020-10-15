@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -14,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Products::orderBy("id" ,"desc")->get();
-        return view ("products.index")->with(compact("products"));
+        $products = Products::all();
+        return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -25,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view ("products.create");
+        return view("products.create");
     }
 
     /**
@@ -37,15 +39,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" =>"required|max:255",
-            "qty"=>"required|integer",
-            "price"=>"required|numeric",
-            "category_id" =>"required|exists:categories,id",
-            "brand_id" =>"nullable|exists:brands,id"
+            "name" => "required|max:255",
+            "qty" => "required|integer",
+            "price" => "required|numeric",
+            "category_id" => "required|exists:categories,id",
+            "brand_id" => "nullable|exists:brands,id"
         ]);
 
         $p = Products::create($request->all());
-        return redirect()->route("product.index");
+        return redirect()->route('product.index');
     }
 
     /**
@@ -56,7 +58,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Products::findOrFail($id);
+        $category = Category::find($product->category_id);
+        $brand = Brand::find($product->brand_id);
+        return view('products.show', ['product' => $product, 'brand' => $brand, 'cat' => $category]);
     }
 
     /**
@@ -67,7 +72,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Products::findOrFail($id);
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('products.edit', ['product' => $product, 'brands' => $brands, 'categories' => $categories]);
     }
 
     /**
@@ -77,9 +85,18 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            "id" => 'numeric|exists:products,id',
+            "name" => "required|max:255",
+            "qty" => "required|integer",
+            "price" => "required|numeric",
+            "category_id" => "required|exists:categories,id",
+            "brand_id" => "nullable|exists:brands,id"
+        ]);
+        Products::find($request->id)->update($request->all());
+        return redirect(route('product.index'))->with('updated', 'Updated successfully');
     }
 
     /**
@@ -90,6 +107,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Products::findOrFail($id)->delete();
+        return redirect(route('product.index'))->with('deleted', 'Deleted successfully');
     }
 }
